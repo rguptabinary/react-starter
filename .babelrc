@@ -1,0 +1,9 @@
+{
+    "presets": ["react", "es2015"],
+    "env": {
+      //only in the development env we want to run below (it bunsles up hot reloading code)
+      "development": {
+        "presets": ["react-hmre"]
+      }
+    }
+  }
