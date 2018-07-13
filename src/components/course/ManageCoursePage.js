@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as courseActions from '../../actions/courseAction';
@@ -85,7 +86,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state, ownProps) {
-    const courseId = ownProps.params.id;
+    const courseId = ownProps.match.params.id;
     let course = { id: '', watchHref: '', title: '', authorId: '', length: '', category: '' };
 
     if (courseId && state.courses.length > 0) {

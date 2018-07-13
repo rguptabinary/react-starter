@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as courseActions from '../../actions/courseAction';
 import { bindActionCreators } from 'redux';
 import CourseList from './CourseList';
-import {browserHistory} from 'react-router';
 
 class CoursesPage extends React.Component {
 
@@ -13,7 +13,7 @@ class CoursesPage extends React.Component {
     }
 
     redirectToAddCoursePage(){
-        browserHistory.push('/course');
+        this.props.history.push('/course');
     }
 
     render() {
