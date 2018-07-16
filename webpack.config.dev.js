@@ -5,11 +5,11 @@ export default {
   mode: 'development',
   devtool: 'inline-source-map',
   //noInfo: false,
-  entry: [
-    'eventsource-polyfill', // necessary for hot reloading with IE
-    'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
-    path.resolve(__dirname, 'src/index')
-  ],
+  entry: {
+    //'eventsource-polyfill', // necessary for hot reloading with IE
+    //'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
+    filename: path.resolve(__dirname, 'src/index'),
+  },
   target: 'web',
   output: {
     path: __dirname + '/dist', // Note: Physical files are only output by the production build task `npm run build`.
@@ -21,7 +21,7 @@ export default {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
   // Below telling webpack type of files we want it to handle
   module: {
@@ -33,6 +33,10 @@ export default {
       {
         test: /(\.css)$/,
         loaders: ['style', 'css']
+      },
+      {
+        test: /(\.scss)$/,
+        loaders: ['style', 'css', 'sass']
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -54,5 +58,23 @@ export default {
   },
   resolveLoader: {
     moduleExtensions: ["-loader"]
+  },
+  /*
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
+    }
   }
+  */
 };
