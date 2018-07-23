@@ -24,7 +24,7 @@ app.use(require('webpack-hot-middleware')(compiler));
 // what kind of file we need to return for the requests
 // below we are configuring to return index.html for all the requests
 app.get('*', function(req, res) {
-  res.sendFile(path.join( __dirname, '../src/index.html'));
+  res.sendFile(path.join( __dirname, '../practice/index.html'));
 });
 
 app.listen(port, function(err) {

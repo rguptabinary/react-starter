@@ -8,7 +8,7 @@ export default {
   entry: {
     //'eventsource-polyfill', // necessary for hot reloading with IE
     //'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
-    filename: path.resolve(__dirname, 'src/index'),
+    filename: path.resolve(__dirname, 'practice/index'),
   },
   target: 'web',
   output: {
@@ -17,17 +17,24 @@ export default {
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: path.resolve(__dirname, 'src')
+    contentBase: path.resolve(__dirname, 'practice')
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.ProvidePlugin({
+      "React": "react",
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Popper: ['popper.js', 'default'], 
+  }),
   ],
   // Below telling webpack type of files we want it to handle
   module: {
     rules: [{
         test: /\.js$/,
-        include: path.join(__dirname, 'src'),
+        include: path.join(__dirname, 'practice'),
         loaders: ['babel']
       },
       {
